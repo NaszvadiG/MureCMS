@@ -1,0 +1,3 @@
+/* 重置数据库(清空) */
+DROP DATABASE `mycms`;
+CREATE DATABASE IF NOT EXISTS `mycms` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;

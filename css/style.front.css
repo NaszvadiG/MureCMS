@@ -1,0 +1,5 @@
+.nav{ overflow:hidden;}
+.nav ul li{ display:inline;}
+.nav ul li a{ display:inline-block;color:#444;background:#eee;padding:5px 10px;}
+.nav ul li a:hover{ background:#ddd;}
+.nav ul li a:active{ background:#ccc;}
