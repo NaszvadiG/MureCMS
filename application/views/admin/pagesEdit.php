@@ -44,7 +44,7 @@
                 </fieldset>
 
                 <div class="mt10">
-                  <input type="submit" name="submit" class="btn btn-primary" value="添加内容">
+                  <input type="submit" name="submit" class="btn btn-primary" value="修改内容">
                   <a href="javascript:history.go(-1)" class="btn">返回</a>
                 </div>
 

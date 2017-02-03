@@ -14,8 +14,6 @@ class FrontPages extends CI_Controller {
 
 	public function GetPage($pageCate, $param){
 
-		
-
 		$site_config = $this->config->item('site_config');
 		$datas_nav = $this->db->query("SELECT * FROM sys_navigation ORDER BY Position ASC;");
 		$datas_pages = $this->db->query("SELECT * FROM sys_pages WHERE PageCate = '$pageCate' ORDER BY Position ASC;");
@@ -57,9 +55,5 @@ class FrontPages extends CI_Controller {
 		$this->load->view('pages');
 		$this->load->view('common/footer', $data);
 	}
-
-
-
-
 	
 }

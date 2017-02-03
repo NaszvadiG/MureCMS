@@ -69,3 +69,5 @@ $route['admin/articles/(:any)/(:any)'] = 'admin/articleslist/$1/$2';
 $route['pages/(:any)'] = 'FrontPages/index/$1';
 $route['pages/(:any)/(:any)'] = 'FrontPages/index/$1/$2';
 
+$route['articles/(:any)'] = 'ArticlePages/index/$1';
+$route['articles/(:any)/(:any)'] = 'ArticlePages/index/$1/$2';
