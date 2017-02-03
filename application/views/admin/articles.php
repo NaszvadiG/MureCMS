@@ -10,11 +10,13 @@
               <div class="list-group mb10">
                 <?php foreach($datas_articleCate['result'] as $index=>$row){ ?>
                   <a href="<?php echo base_url('admin/articles/'.$row->ArticleCate); ?>" class="list-group-item <?php if($articleCate==$row->ArticleCate) echo 'active'; ?>"><span class="label label-default"><?php echo $row->Position; ?></span>&nbsp;&nbsp;<?php echo $row->ArticleTitle; ?></a>
-                  <ul class="list-group-child">
-                    <?php foreach($datas_articleCate['childList'][$index+1] as $indexChild=>$rowChild){ ?>
-                    <li><a class="<?php if($id == $rowChild->Id) echo 'active'; ?>" href="<?php echo base_url('admin/articles/'.$row->ArticleCate.'/'.$rowChild->Id); ?>"><?php echo $rowChild->ArticleTitle;?></a></li>
-                    <?php } ?>
-                  </ul>
+                  <?php if(!empty($datas_articleCate['childList'][$index+1])){ ?>
+                    <ul class="list-group-child">
+                        <?php foreach($datas_articleCate['childList'][$index+1] as $indexChild=>$rowChild){ ?>
+                          <li><a class="<?php if($id == $rowChild->Id) echo 'active'; ?>" href="<?php echo base_url('admin/articles/'.$row->ArticleCate.'/'.$rowChild->Id); ?>"><?php echo $rowChild->ArticleTitle;?></a></li>
+                        <?php } ?>
+                    </ul>
+                  <?php } ?>
                 <?php } ?>
               </div>
               
@@ -23,8 +25,8 @@
                   添加
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <!--<a class="dropdown-item" href="<?php echo base_url('admin/pages/add/'.$pageCate); ?>">添加单页</a>
-                  <a class="dropdown-item" href="<?php echo base_url('admin/pages/addcate'); ?>">添加单页分类</a>-->
+                  <a class="dropdown-item" href="<?php echo base_url('admin/articles/add/'.$articleCate); ?>">添加资讯</a>
+                  <a class="dropdown-item" href="<?php echo base_url('admin/articles/addcate'); ?>">添加资讯分类</a>
                 </div>
               </div>
 

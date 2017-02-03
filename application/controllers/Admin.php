@@ -314,6 +314,44 @@ class Admin extends CI_Controller {
     $this->load->view('admin/common/footer', $data);
   }
 
+  public function articlesAddView($articleCate="news", $id=''){
+
+
+    $this->Model_CheckLogin->Check();
+    $this->breadcrumb->add_crumb('首页', base_url('admin/index'));
+    $this->breadcrumb->add_crumb('资讯管理', base_url('admin/articles'));
+    $this->breadcrumb->add_crumb('添加资讯');
+
+    $this->load->model('Model_Articles');
+    $datas_articleCate = $this->Model_Articles->GetCate($articleCate);
+    $datas_articles = $this->Model_Articles->GetList($datas_articleCate['articleCate'], $id);
+
+
+    $data = array(
+      'title' => '资讯管理',
+      'id' => $id,
+      'currentNav' => 'articles',
+      'breadcrumb' => $this->breadcrumb->output(),
+      'articleCate' => $datas_articleCate['articleCate'],
+      'articleName' => $datas_articleCate['articleTitle'],
+      'datas_articleCate' => $datas_articleCate,
+      'datas_articles' => $datas_articles
+    );
+
+    // $data = array(
+    //   'title' => '内容单页管理',
+    //   'currentNav' => 'articles',
+    //   'articleCate' => $articleCate,
+    //   'articleName' => $datas_articlesCate['articleName'],
+    //   'breadcrumb' => $this->breadcrumb->output(),
+    //   'datas_articlesCate' => $datas_articlesCate
+    // );
+
+
+    $this->load->view('admin/common/header', $data);
+    $this->load->view('admin/articlesAdd', $data);
+    $this->load->view('admin/common/footer', $data);
+  }
 
   /*---------------------------- 内容单页管理 Start -------------------------------*/
   // 不带参数
