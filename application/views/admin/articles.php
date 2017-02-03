@@ -25,8 +25,8 @@
                   添加
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <a class="dropdown-item" href="<?php echo base_url('admin/articles/add/'.$articleCate); ?>">添加资讯</a>
-                  <a class="dropdown-item" href="<?php echo base_url('admin/articles/addcate'); ?>">添加资讯分类</a>
+                  <a class="dropdown-item" href="<?php echo base_url('admin/articles/add/'.$articleCate.'/'.$id); ?>">添加资讯</a>
+                  <!--<a class="dropdown-item" href="<?php echo base_url('admin/articles/addcate'); ?>">添加资讯分类</a>-->
                 </div>
               </div>
 
@@ -34,15 +34,14 @@
             <div class="col-md-9">
             
               <div class="row">
-
-
-                
-                <h5 class="col-xs-5"><?php echo $articleName;if(!empty($id)){ echo '<small class="text-muted"> - '.$articleChildName.'</small>';} ?></h5>
-                <div class="col-xs-3 col-xs-offset-4 text-right">
-                  <!--<a href="<?php echo base_url('admin/pages/editcate/'.$pageCate);?>">修改分类</a>&nbsp;&nbsp;-->
-                  <!--<a href="javascript:;" class="delete_click" data-tip="<?php echo $pageCate;?>" data-model="pageCateDelete" data-url="<?php echo base_url('admin/pageDeleteCate/'.$datas_pagesCate['id'].'/'.$pageCate);?>">删除分类</a>-->
+                <h5 class="col-xs-8">
+                  <?php echo $articleName;if(!empty($id)){ echo '<small class="text-muted"> - '.$articleChildName.'</small>';} ?>&nbsp;&nbsp;
+                  <small><a href="<?php echo base_url('admin/articles/editcate/'.$articleCate);?>">修改分类</a></small>&nbsp;&nbsp;
+                  <small><a href="javascript:;" class="delete_click" data-tip="<?php echo $articleCate;?>" data-model="articleCateDelete" data-url="">删除分类</a></small>
+                </h5>
+                <div class="col-xs-4 text-right">
+                  <a href="<?php echo base_url('admin/articles/add/'.$articleCate.'/'.$id); ?>">添加资讯</a>
                 </div>
-                
               </div>
 
               <div class="table-respon'sive">

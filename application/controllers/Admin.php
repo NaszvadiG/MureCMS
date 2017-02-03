@@ -232,7 +232,6 @@ class Admin extends CI_Controller {
       $this->Model_MyPassword->ChangePassword($this->session->user_info['user']);
     }
   }
-
   
   // 删除 管理员
   public function managerDelete($id){
@@ -314,8 +313,8 @@ class Admin extends CI_Controller {
     $this->load->view('admin/common/footer', $data);
   }
 
+  // 添加 资讯管理
   public function articlesAddView($articleCate="news", $id=''){
-
 
     $this->Model_CheckLogin->Check();
     $this->breadcrumb->add_crumb('首页', base_url('admin/index'));
@@ -325,7 +324,6 @@ class Admin extends CI_Controller {
     $this->load->model('Model_Articles');
     $datas_articleCate = $this->Model_Articles->GetCate($articleCate);
     $datas_articles = $this->Model_Articles->GetList($datas_articleCate['articleCate'], $id);
-
 
     $data = array(
       'title' => '资讯管理',
@@ -338,19 +336,45 @@ class Admin extends CI_Controller {
       'datas_articles' => $datas_articles
     );
 
-    // $data = array(
-    //   'title' => '内容单页管理',
-    //   'currentNav' => 'articles',
-    //   'articleCate' => $articleCate,
-    //   'articleName' => $datas_articlesCate['articleName'],
-    //   'breadcrumb' => $this->breadcrumb->output(),
-    //   'datas_articlesCate' => $datas_articlesCate
-    // );
-
+    if(!empty($id)){
+      foreach($datas_articles as $row){
+        if($id == $row->ArticleCateId){ $data['articleChildName'] = $row->ArticleCateName;break; }
+      }
+    }
 
     $this->load->view('admin/common/header', $data);
     $this->load->view('admin/articlesAdd', $data);
     $this->load->view('admin/common/footer', $data);
+  }
+
+  public function articlesAdd($cate, $id=''){
+    
+    $this->load->model('Model_Articles');
+
+    if ($this->Model_Articles->AddRules() == FALSE){ // 本地验证
+      $this->articlesAddView($cate);
+    }else{
+      if(empty($id)){
+        $data = array(
+          'ArticleCate'=>$cate,
+          'ArticleCateId'=>$_POST['articleCateId'],
+          'ArticleCateName'=>$_POST['articleCateName'],
+          'ArticleTitle'=>$_POST['title'],
+          'ArticleContent'=>$_POST['content'],
+          'Position'=>$_POST['position']
+        );
+      }else{
+        $data = array(
+          'ArticleCate'=>$cate,
+          'ArticleCateId'=>$id,
+          'ArticleCateName'=>$_POST['articleCateName'],
+          'ArticleTitle'=>$_POST['title'],
+          'ArticleContent'=>$_POST['content'],
+          'Position'=>$_POST['position']
+        );
+      }
+      $this->Model_Articles->Add($data);
+    }
   }
 
   /*---------------------------- 内容单页管理 Start -------------------------------*/

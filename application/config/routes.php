@@ -63,6 +63,7 @@ $route['admin/pages/edit/(:any)/(:any)'] = 'admin/pagesEditView/$1/$2';
 
 $route['admin/articles/(:any)'] = 'admin/articleslist/$1';
 $route['admin/articles/add/(:any)'] = 'admin/articlesAddView/$1';
+$route['admin/articles/add/(:any)/(:any)'] = 'admin/articlesAddView/$1/$2';
 $route['admin/articles/(:any)/(:any)'] = 'admin/articleslist/$1/$2';
 
 //前台

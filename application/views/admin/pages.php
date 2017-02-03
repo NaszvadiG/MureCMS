@@ -29,12 +29,12 @@
             <div class="col-md-9">
 
               <div class="row">
-                <h5 class="col-xs-5">
+                <h5 class="col-xs-8">
                   <?php echo $pageName;?>&nbsp;&nbsp;
                   <small><a href="<?php echo base_url('admin/pages/editcate/'.$pageCate);?>">修改</a>&nbsp;&nbsp;</small>
                   <small><a href="javascript:;" class="delete_click" data-tip="<?php echo $pageCate;?>" data-model="pageCateDelete" data-url="<?php echo base_url('admin/pageDeleteCate/'.$datas_pagesCate['id'].'/'.$pageCate);?>">删除</a></small>
                 </h5>
-                <div class="col-xs-7 text-right">
+                <div class="col-xs-4 text-right">
                   <a href="<?php echo base_url('admin/pages/add/'.$pageCate); ?>">添加单页</a>
                 </div>
                 

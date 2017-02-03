@@ -47,8 +47,6 @@ class Model_Articles extends CI_Model {
     return $data;
   }
 
-
-
   function GetList($articleCate='', $id='')
   {
     if(!empty($id)){
@@ -59,18 +57,22 @@ class Model_Articles extends CI_Model {
     return $query->result();
   }
 
-  // function GetPage($pageCate, $id){
-  //   $query = $this->db->query("SELECT * FROM sys_pages WHERE PageCate = '".$pageCate."' AND Id = ".$id." ORDER BY Position ASC;");
-  //   return $query->result();
-  // }
+  function AddRules(){
+    // 表单验证规则
+    $this->form_validation->set_rules('title', '标题', 'required');
+    $this->form_validation->set_rules('content', '内容', 'required');
+    return $this->form_validation->run();
+  }
 
-
-  // function AddRules(){
-  //   // 表单验证规则
-  //   $this->form_validation->set_rules('title', '标题', 'required');
-  //   $this->form_validation->set_rules('content', '内容', 'required');
-  //   return $this->form_validation->run();
-  // }
+  function Add($data){
+    $this->db->insert('sys_articles', $data);
+    if($this->db->affected_rows()!=0){
+      $this->session->set_flashdata('state', '<div class="alert alert-success mb10" role="alert">添加成功!</div>');
+    }else{
+      $this->session->set_flashdata('state', '<div class="alert alert-danger mb10" role="alert">数据库操作失败!</div>');
+    }
+    redirect('admin/articles/'.$data['ArticleCate']);
+  }
 
   // function AddCateRules($bool=false){
   //   // 分类 表单验证规则
@@ -81,15 +83,7 @@ class Model_Articles extends CI_Model {
   //   return $this->form_validation->run();
   // }
 
-  // function Add($data){
-  //   $this->db->insert('sys_pages', $data);
-  //   if($this->db->affected_rows()!=0){
-  //     $this->session->set_flashdata('state', '<div class="alert alert-success mb10" role="alert">添加成功!</div>');
-  //   }else{
-  //     $this->session->set_flashdata('state', '<div class="alert alert-danger mb10" role="alert">数据库操作失败!</div>');
-  //   }
-  //   redirect('admin/pages/'.$data['PageCate']);
-  // }
+  
 
   // function AddCate($data){
   //   $this->db->insert('sys_pages_cate', $data);
