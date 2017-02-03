@@ -19,7 +19,7 @@
         <?php foreach ($datas_nav->result() as $row){ ?>
             <li><a href="<?php echo $row->Link; ?>"><?php echo $row->Title; ?></a></li>
         <?php } ?>
-        <li><a href="/articles/news">article</a></li>
+        <li><a href="/articles">article</a></li>
     </ul>
     </div>
 

@@ -282,6 +282,7 @@ class Admin extends CI_Controller {
   }
   // 带参数
   public function articlesList($articleCate, $id=''){
+
     $title = '资讯管理';
     $this->Model_CheckLogin->Check();
     $this->breadcrumb->add_crumb('首页',base_url('admin/index'));

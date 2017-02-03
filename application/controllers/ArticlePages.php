@@ -8,14 +8,39 @@ class ArticlePages extends CI_Controller {
 		$this->load->database();
     $this->load->helper(array('form','url'));
 		$this->load->library(array('session','breadcrumb'));
-		
+
 	}
 
-	public function GetArticle($articleCate, $id=''){
-
+	public function GetArticleSimple(){
 		$site_config = $this->config->item('site_config');
 		$datas_nav = $this->db->query("SELECT * FROM sys_navigation ORDER BY Position ASC;");
-		
+
+    $this->load->model('Model_Articles');
+    $datas_articleCate = $this->Model_Articles->GetCate();
+    $datas_articles = $this->Model_Articles->GetList($datas_articleCate['articleCate']);
+
+    $data = array_merge_recursive($site_config,
+			array(
+				'id' => '',
+				'datas_nav' => $datas_nav,
+				'currentNav' => 'articles',
+				'breadcrumb' => $this->breadcrumb->output(),
+				'articleCate' => $datas_articleCate['articleCate'],
+				'articleName' => $datas_articleCate['articleTitle'],
+				'datas_articleCate' => $datas_articleCate,
+				'datas_articles' => $datas_articles
+    ));
+
+    $this->load->view('common/header', $data);
+    $this->load->view('articles', $data);
+    $this->load->view('common/footer', $data);
+	}
+
+	// 带参数 /articles/$1/$2
+	public function GetArticle($articleCate, $id=''){
+		$site_config = $this->config->item('site_config');
+		$datas_nav = $this->db->query("SELECT * FROM sys_navigation ORDER BY Position ASC;");
+
 		$this->load->model('Model_Articles');
     $datas_articleCate = $this->Model_Articles->GetCate($articleCate);
     $datas_articles = $this->Model_Articles->GetList($datas_articleCate['articleCate'], $id);

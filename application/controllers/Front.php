@@ -32,8 +32,4 @@ class Front extends CI_Controller {
 		$this->load->view('common/footer', $data);
 	}
 
-
-
-
-	
 }

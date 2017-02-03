@@ -23,7 +23,7 @@
   <strong><?php echo $articleName;if(!empty($id)){ echo '<small class="text-muted"> - '.$articleChildName.'</small>';} ?></strong>
   <ul>
       <?php foreach($datas_articles as $row){ ?> 
-        <li><a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$row->Id); ?>"><?php echo $row->ArticleTitle; ?></a></li>
+        <li><a href="<?php echo base_url('/articles/edit/'.$row->ArticleCate.'/'.$row->Id); ?>"><?php echo $row->ArticleTitle; ?></a></li>
       <?php } ?>
   </ul>
 </div>

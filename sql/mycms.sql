@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-02-03 03:01:06
+-- Generation Time: 2017-02-03 06:47:44
 -- 服务器版本： 5.7.11
 -- PHP Version: 5.6.19
 
@@ -58,22 +58,23 @@ INSERT INTO `sys_articles` (`Id`, `Position`, `ArticleTitle`, `ArticleCate`, `Ar
 CREATE TABLE `sys_articles_cate` (
   `Id` int(5) NOT NULL,
   `Position` int(5) DEFAULT '0',
-  `isChild` tinyint(1) DEFAULT '0',
+  `IsChild` tinyint(1) DEFAULT '0',
   `ArticleTitle` varchar(100) NOT NULL,
-  `ArticleCate` varchar(20) NOT NULL
+  `ArticleCate` varchar(20) NOT NULL,
+  `IsAdd` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `sys_articles_cate`
 --
 
-INSERT INTO `sys_articles_cate` (`Id`, `Position`, `isChild`, `ArticleTitle`, `ArticleCate`) VALUES
-(1, 1, 0, '新闻资讯', 'news'),
-(2, 1, 1, '公司新闻', 'news'),
-(3, 2, 1, '行业新闻', 'news'),
-(4, 2, 0, '最新动态', 'lastest'),
-(5, 1, 1, '公司最新动态', 'lastest'),
-(6, 2, 1, '行业最新动态', 'lastest');
+INSERT INTO `sys_articles_cate` (`Id`, `Position`, `IsChild`, `ArticleTitle`, `ArticleCate`, `IsAdd`) VALUES
+(1, 1, 0, '新闻资讯', 'news', 0),
+(2, 1, 1, '公司新闻', 'news', 0),
+(3, 2, 1, '行业新闻', 'news', 0),
+(4, 2, 0, '最新动态', 'lastest', 0),
+(5, 1, 1, '公司最新动态', 'lastest', 0),
+(6, 2, 1, '行业最新动态', 'lastest', 0);
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,6 @@ INSERT INTO `sys_navigation` (`Id`, `Title`, `Type`, `Link`, `Position`) VALUES
 (94, '关于我们', 2, '/pages/about', 1),
 (36, '首页', 1, '/', 0),
 (103, '产品案例', 2, '/pages/case', 4),
-(101, 'ss', 2, '/pages/ss', 2),
 (102, '联系我们', 2, '/pages/contact', 3);
 
 -- --------------------------------------------------------
@@ -119,15 +119,13 @@ CREATE TABLE `sys_pages` (
 --
 
 INSERT INTO `sys_pages` (`Id`, `Position`, `PageTitle`, `PageCate`, `PageContent`) VALUES
-(1, 1, '企业介绍2', 'about', '<p>企业介绍测试文本s</p>'),
+(1, 1, '企业介绍2', 'about', '<p>企业介绍测试文本s2</p>'),
 (2, 2, '企业荣誉', 'about', '<p>企业荣誉测试文本</p>'),
 (3, 1, '联系方式', 'contact', '<p>联系<span style="text-decoration: underline;">联系</span><em>方式</em><strong>方式</strong><sub>联系</sub><sup>方式</sup></p>'),
 (22, 2, '行业产品', 'case', '<p>行业产品行业产品行业产品行业产品行业产品<br></p>'),
 (21, 1, '公司产品', 'case', '<p>公司产品公司产品公司产品公司产品<br></p>'),
-(9, 0, '111', 'contact', '<p>hi<br/></p>'),
-(10, 0, '222', 'contact', '<p>222<br/></p>'),
-(24, 0, 'sss1', 'ss', '<p>sss</p>'),
-(26, 0, '1111', 'ss', '<p><img src="/uploads/image/20170203/1486090003574043.png" title="1486090003574043.png" alt="QQ图片20170112101628.png"/></p>');
+(9, 0, '111', 'contact', '<p><img src="/uploads/image/20170203/1486101233118724.png" title="1486101233118724.png" alt="QQ图片20170112101628.png" width="216" height="168"/></p>'),
+(10, 0, '222', 'contact', '<p>222<br/></p>');
 
 -- --------------------------------------------------------
 
@@ -150,8 +148,7 @@ CREATE TABLE `sys_pages_cate` (
 INSERT INTO `sys_pages_cate` (`Id`, `Position`, `PageCate`, `PageName`, `IsAdd`) VALUES
 (1, 1, 'about', '关于我们', 1),
 (2, 3, 'contact', '联系我们', 1),
-(11, 2, 'case', '产品案例', 1),
-(12, 4, 'ss', 'ss', 1);
+(11, 2, 'case', '产品案例', 1);
 
 -- --------------------------------------------------------
 
@@ -174,7 +171,7 @@ CREATE TABLE `sys_user` (
 --
 
 INSERT INTO `sys_user` (`Id`, `UserName`, `PassWord`, `UserType`, `RealName`, `LastLoginIP`, `LastLoginTime`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'super', '管理员先生', '192.168.1.151', 1486090096),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'super', '管理员先生', '192.168.1.151', 1486101198),
 (17, 'aaaa', '74b87337454200d4d33f80c4663dc5e5', 'normal', 'aaaa', '192.168.1.151', 1486090077),
 (18, 'bbbb', '65ba841e01d6db7733e90a5b7f9e6f80', 'normal', 'b', NULL, NULL);
 
@@ -248,7 +245,7 @@ ALTER TABLE `sys_pages`
 -- 使用表AUTO_INCREMENT `sys_pages_cate`
 --
 ALTER TABLE `sys_pages_cate`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- 使用表AUTO_INCREMENT `sys_user`
 --
