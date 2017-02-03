@@ -1,8 +1,8 @@
 # MyCMS
-my first CodeIgniter CMS Project
+My first CodeIgniter CMS Project
 
-## Vesion
-1.0
+## Update
+2017.02.03
 
 ## Profile
 ...
