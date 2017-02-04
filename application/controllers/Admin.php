@@ -348,9 +348,7 @@ class Admin extends CI_Controller {
   }
 
   public function articlesAdd($cate, $id=''){
-    
     $this->load->model('Model_Articles');
-
     if ($this->Model_Articles->AddRules() == FALSE){ // 本地验证
       $this->articlesAddView($cate);
     }else{
@@ -376,6 +374,35 @@ class Admin extends CI_Controller {
       $this->Model_Articles->Add($data);
     }
   }
+
+  // 删除 资讯页
+  public function articleDelete($id, $cate, $cateChild){
+    $this->db->where('Id',$id);
+    $this->db->delete('sys_articles');
+    if($this->db->affected_rows()!=0){
+      $this->session->set_flashdata('state',
+        '<div class="alert alert-success fade in mb10" role="alert">'.
+          '删除成功!'.
+          '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'.
+            '<span aria-hidden="true">&times;</span>'.
+          '</button>'.
+        '</div>'
+      );
+    }else{
+      $this->session->set_flashdata('state', '<div class="alert alert-danger mb10" role="alert">数据库操作失败!</div>');
+    }
+    if(isset($cate)){
+      if(isset($cate)){
+        redirect('admin/articles/'.$cate.'/'.$cateChild);
+      }else{
+        redirect('admin/articles/'.$cate);
+      }
+    }else{
+      redirect('admin/articles');
+    }
+  }
+
+
 
   /*---------------------------- 内容单页管理 Start -------------------------------*/
   // 不带参数
@@ -451,7 +478,6 @@ class Admin extends CI_Controller {
     }else{
       $this->session->set_flashdata('state', '<div class="alert alert-danger mb10" role="alert">数据库操作失败!</div>');
     }
-
     isset($cate) ? redirect('admin/pages/'.$cate) : redirect('admin/pages');
   }
 

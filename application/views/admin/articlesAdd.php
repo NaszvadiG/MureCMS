@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-9">
               
-              <h5 class="mb20">在 <b class="text-info"><?php echo $articleName; if(!empty($id)){ echo ' - '.$articleChildName;}?></b> 分类下添加单页</h5>
+              <h5 class="mb20">在 <b class="text-info"><?php echo $articleName; if(!empty($id)){ echo ' - '.$articleChildName;}?></b> 分类下添加资讯页</h5>
               
               <?php if(!empty($id)){
                 echo form_open('admin/articlesAdd/'.$articleCate.'/'.$id);

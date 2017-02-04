@@ -60,7 +60,7 @@
                       <td><a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$row->Id); ?>"><?php echo $row->ArticleTitle; ?></a></td>
                       <td>
                         <a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$row->Id); ?>">修改</a>&nbsp;
-                        <a href="javascript:;" class="delete_click" data-tip="<?php echo $row->ArticleTitle;?>" data-model="articleDelete" data-url="<?php echo base_url('admin/articleDelete/'.$row->Id.'/'.$row->ArticleCate);?>">删除</a>
+                        <a href="javascript:;" class="delete_click" data-tip="<?php echo $row->ArticleTitle;?>" data-model="articleDelete" data-url="<?php echo base_url('admin/articleDelete/'.$row->Id.'/'.$row->ArticleCate.'/'.$id);?>">删除</a>
                       </td>
                     </tr>
                     <?php } ?>
@@ -82,5 +82,5 @@
       </div>
 
 
-  <?php $this->load->view('admin/common/confirm/pageDeleteModel'); ?>
+  <?php $this->load->view('admin/common/confirm/articleDeleteModel'); ?>
   <?php $this->load->view('admin/common/confirm/pageCateDeleteModel'); ?>
