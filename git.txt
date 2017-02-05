@@ -1,0 +1,6 @@
+查看已修改
+git checkout
+
+撤销未提交的本地修改
+git checkout *.php
+
