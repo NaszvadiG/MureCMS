@@ -288,9 +288,9 @@ class Admin extends CI_Controller {
     $this->breadcrumb->add_crumb($title);
 
     $this->load->model('Model_Articles');
-    $datas_articleCate = $this->Model_Articles->GetCate($articleCate);
+    $datas_articleCate = $this->Model_Articles->GetCate($articleCate, $id);
     $datas_articles = $this->Model_Articles->GetList($datas_articleCate['articleCate'], $id);
-    
+
     $data = array(
       'title' => $title,
       'id' => $id,
@@ -302,10 +302,14 @@ class Admin extends CI_Controller {
       'datas_articles' => $datas_articles
     );
 
-    if(!empty($id)){
-      foreach($datas_articles as $row){
-        if($id == $row->ArticleCateId){ $data['articleChildName'] = $row->ArticleCateName;break; }
+    if(!empty($datas_articles)){
+      if(!empty($id)){
+        foreach($datas_articles as $row){
+          if($id == $row->ArticleCateId){ $data['articleChildName'] = $row->ArticleCateName;break; }
+        }
       }
+    }else{
+      if(!empty($datas_articleCate['articleChildName'])) $data['articleChildName'] = $datas_articleCate['articleChildName'];
     }
 
     $this->load->view('admin/common/header', $data);
@@ -322,7 +326,7 @@ class Admin extends CI_Controller {
     $this->breadcrumb->add_crumb('添加资讯');
 
     $this->load->model('Model_Articles');
-    $datas_articleCate = $this->Model_Articles->GetCate($articleCate);
+    $datas_articleCate = $this->Model_Articles->GetCate($articleCate, $id);
     $datas_articles = $this->Model_Articles->GetList($datas_articleCate['articleCate'], $id);
 
     $data = array(
@@ -336,10 +340,14 @@ class Admin extends CI_Controller {
       'datas_articles' => $datas_articles
     );
 
-    if(!empty($id)){
-      foreach($datas_articles as $row){
-        if($id == $row->ArticleCateId){ $data['articleChildName'] = $row->ArticleCateName;break; }
+    if(!empty($datas_articles)){
+      if(!empty($id)){
+        foreach($datas_articles as $row){
+          if($id == $row->ArticleCateId){ $data['articleChildName'] = $row->ArticleCateName;break; }
+        }
       }
+    }else{
+      if(!empty($datas_articleCate['articleChildName'])) $data['articleChildName'] = $datas_articleCate['articleChildName'];
     }
 
     $this->load->view('admin/common/header', $data);
@@ -431,11 +439,13 @@ class Admin extends CI_Controller {
       'datas_articleDetail' => $datas_articleDetail
     );
     
-    if(!empty($id)){
+    if(!empty($articleId)){
       foreach($datas_articles as $row){
         if($id == $row->ArticleCateId){ $data['articleChildName'] = $row->ArticleCateName;break; }
       }
     }
+    
+
     $this->load->view('admin/common/header', $data);
     $this->load->view('admin/articlesEdit', $data);
     $this->load->view('admin/common/footer', $data);
@@ -444,15 +454,51 @@ class Admin extends CI_Controller {
   public function articlesEdit($cate, $id='', $articleId=''){
     $this->load->model('Model_Articles');
     if ($this->Model_Articles->AddRules() == FALSE){ // 本地验证
-      if($articleId){
+      if(!empty($articleId)){
         $this->articlesEditView($cate, $id, $articleId);
       }else{
         $this->articlesEditView($cate, $id);
       }
       return false;
     }else{
-
-      echo 'success rule';
+      
+      // if(!empty($articleId)){
+      //   $data = array(
+      //     'ArticleCate'=>$cate,
+      //     'ArticleCateId'=>$_POST['articleCateId'],
+      //     'ArticleCateName'=>$_POST['articleCateName'],
+      //     'ArticleTitle'=>$_POST['title'],
+      //     'ArticleContent'=>$_POST['content'],
+      //     'Position'=>$_POST['position']
+      //   );
+      // }else{
+      //   $data = array(
+      //     'ArticleCate'=>$cate,
+      //     'ArticleCateId'=>$id,
+      //     'ArticleCateName'=>$_POST['articleCateName'],
+      //     'ArticleTitle'=>$_POST['title'],
+      //     'ArticleContent'=>$_POST['content'],
+      //     'Position'=>$_POST['position']
+      //   );
+      // }
+      $data = array(
+        'Id'=>'',
+        'Position'=>$_POST['position'],
+        'ArticleTitle'=>$_POST['title'],
+        'ArticleCate'=>$cate,
+        'ArticleCateId'=>$_POST['articleCateId'],
+        'ArticleCateName'=>$_POST['articleCateName'],
+        'ArticleContent'=>$_POST['content']
+      );
+      if(!empty($articleId)){
+        $data['Id'] = $articleId;
+      }else{
+        $data['Id'] = $id;
+      }
+      $this->Model_Articles->Update($data);
+      // echo $cate.','.$id.','.$articleId;
+      // var_dump($data);
+      
 
       // if(empty($id)){
       //   $data = array(

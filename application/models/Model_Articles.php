@@ -8,8 +8,9 @@ class Model_Articles extends CI_Model {
       $this->load->database();
   }
   
-  function GetCate($articleCate='')
+  function GetCate($articleCate='', $id='')
   {
+    
     $query = $this->db->query("SELECT * FROM sys_articles_cate WHERE isChild = 0 ORDER BY Position ASC");
     foreach($query->result() as $row){
       if(!empty($articleCate)){
@@ -43,6 +44,10 @@ class Model_Articles extends CI_Model {
           }
         }
       }
+    }
+    if(!empty($id)){
+      $query_cate = $this->db->query("SELECT * FROM sys_articles_cate WHERE Id = $id")->result();
+      $data['articleChildName'] = $query_cate[0]->ArticleTitle;
     }
     return $data;
   }
@@ -86,9 +91,13 @@ class Model_Articles extends CI_Model {
 
   function Update($data){
 
+    echo '提交POST';
     var_dump($data);
-    
-    // $data_before = $this->db->get_where('sys_articles', array( 'Id'=>$data['Id'] ))->result_array()[0];
+    $data_before = $this->db->get_where('sys_articles', array( 'Id'=>$data['Id'] ))->result_array()[0];
+
+    echo '<br/>查';
+    var_dump($data_before);
+
     // if(count(array_diff($data_before, $data))!=0 || count(array_diff($data_before, $data))!=0){
       
     //   $this->db->update('sys_pages', $data, array( 'Id' => $data['Id'] ));

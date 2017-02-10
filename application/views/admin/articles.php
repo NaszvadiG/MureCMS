@@ -52,17 +52,21 @@
                     <th width="25%">操作</th>
                   </tr></thead>
                   <tbody>
-
-
-                    <?php foreach($datas_articles as $row){ ?> 
-                    <tr>
-                      <td><?php echo $row->Position; ?></td>
-                      <td><a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$id.'/'.$row->Id); ?>"><?php echo $row->ArticleTitle; ?></a></td>
-                      <td>
-                        <a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$id.'/'.$row->Id); ?>">修改</a>&nbsp;
-                        <a href="javascript:;" class="delete_click" data-tip="<?php echo $row->ArticleTitle;?>" data-model="articleDelete" data-url="<?php echo base_url('admin/articleDelete/'.$row->Id.'/'.$row->ArticleCate.'/'.$id);?>">删除</a>
-                      </td>
-                    </tr>
+                    <?php if(!empty($datas_articles)){ ?>
+                      <?php foreach($datas_articles as $row){ ?> 
+                      <tr>
+                        <td><?php echo $row->Position; ?></td>
+                        <td><a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$row->ArticleCateId.'/'.$row->Id); ?>"><?php echo $row->ArticleTitle; ?></a></td>
+                        <td>
+                          <a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$row->ArticleCateId.'/'.$row->Id); ?>">修改</a>&nbsp;
+                          <a href="javascript:;" class="delete_click" data-tip="<?php echo $row->ArticleTitle;?>" data-model="articleDelete" data-url="<?php echo base_url('admin/articleDelete/'.$row->Id.'/'.$row->ArticleCate.'/'.$id);?>">删除</a>
+                        </td>
+                      </tr>
+                      <?php } ?>
+                    <?php }else{ ?>
+                      <tr>
+                        <td colspan=3>暂无资讯</td>
+                      </tr>
                     <?php } ?>
                     
                   </tbody>

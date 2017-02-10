@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-02-03 09:12:54
+-- Generation Time: 2017-02-10 08:39:51
 -- 服务器版本： 5.7.11
 -- PHP Version: 5.6.19
 
@@ -41,15 +41,16 @@ CREATE TABLE `sys_articles` (
 --
 
 INSERT INTO `sys_articles` (`Id`, `Position`, `ArticleTitle`, `ArticleCate`, `ArticleCateId`, `ArticleCateName`, `ArticleContent`) VALUES
-(17, 0, '33aa3a3a3', 'news', 3, '新闻资讯', '<p>a3aa3a3a3</p>'),
+(19, 0, 'fff111', 'news', 1, '新闻资讯', '<p>1ff1f1f</p>'),
 (16, 0, '111', 'n', 9, '1111111', '<p>11111</p>'),
-(3, 0, '333', 'news', 3, '行业新闻', '3333'),
+(20, 0, 'xxxx222x', 'news', 3, '新闻资讯', '<p>xxxx222xxxx222</p>'),
 (4, 0, 'aaaa', 'lastest', 5, '公司最新动态', 'aaaaaaaaaaaaa'),
 (5, 0, 'bbbb', 'lastest', 5, '公司最新动态', 'bbbbbbbbbbbbbbbbbbbbb'),
 (6, 0, 'cccc', 'lastest', 6, '行业最新动态', 'ccccccccccccccccc'),
 (7, 0, 'dddd', 'lastest', 6, '行业最新动态', 'ddddddddddddddddd'),
 (18, 0, 'a4a4a4', 'lastest', 5, '最新动态', '<p>a4a4a4</p>'),
-(15, 0, 'xxx', 'lastest', 4, '最新动态', '<p>xxxx</p>');
+(15, 0, 'xxx', 'lastest', 4, '最新动态', '<p>xxxx</p>'),
+(21, 0, '2222', 'n', 9, '1111111', '<p>2222</p>');
 
 -- --------------------------------------------------------
 
@@ -76,7 +77,8 @@ INSERT INTO `sys_articles_cate` (`Id`, `Position`, `IsChild`, `ArticleTitle`, `A
 (4, 2, 0, '最新动态', 'lastest', 0),
 (5, 1, 1, '公司最新动态', 'lastest', 0),
 (6, 2, 1, '行业最新动态', 'lastest', 0),
-(9, 3, 0, '1111111', 'n', 0);
+(9, 3, 0, '1111111', 'n', 0),
+(10, 4, 0, '22222', 'n2', 0);
 
 -- --------------------------------------------------------
 
@@ -227,12 +229,12 @@ ALTER TABLE `sys_user`
 -- 使用表AUTO_INCREMENT `sys_articles`
 --
 ALTER TABLE `sys_articles`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- 使用表AUTO_INCREMENT `sys_articles_cate`
 --
 ALTER TABLE `sys_articles_cate`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- 使用表AUTO_INCREMENT `sys_navigation`
 --

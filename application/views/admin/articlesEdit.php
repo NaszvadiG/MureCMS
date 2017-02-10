@@ -21,13 +21,14 @@
             </div>
             <div class="col-md-9">
               
-              <h5 class="mb20">在 <b class="text-info"><?php echo $articleName; if(!empty($articleId)){ echo ' - '.$articleChildName;}?></b> 分类下修改 <b class="text-info"><?php echo $datas_articleDetail[0]->ArticleTitle; ?></b></h5>
+              <h5 class="mb20">修改 <b class="text-info"><?php echo $datas_articleDetail[0]->ArticleTitle; ?></b></h5>
+              <!--在 <b class="text-info"><?php //echo $articleName; if(!empty($articleId)){ echo ' - '.$articleChildName;}?></b> 分类下-->
               
-              <?php if(!empty($id)){
-                echo form_open('admin/articlesEdit/'.$articleCate.'/'.$id.'/'.$articleId);
-              }else{
-                echo form_open('admin/articlesEdit/'.$articleCate.'/'.$id);
-              }?>
+                <?php if(!empty($id)){
+                  echo form_open('admin/articlesEdit/'.$articleCate.'/'.$id.'/'.$articleId);
+                }else{
+                  echo form_open('admin/articlesEdit/'.$articleCate.'/'.$id);
+                }?>
 
                 <?php //var_dump($datas_articleDetail);?>
                 <fieldset class="form-group mb10">
@@ -36,8 +37,9 @@
                     <div class="col-md-2"><input type="number" value="<?php echo $datas_articleDetail[0]->Position; ?>" name="position" class="form-control" placeholder="0" require></div>
                   </div>
                 </fieldset>
-                <input type="text" name="articleDetailId" value="<?php echo $datas_articleDetail[0]->Id; ?>">
+                <!--<input type="text" name="articleDetailId" value="<?php //echo $datas_articleDetail[0]->Id; ?>">-->
                 <input type="text" name="articleCateId" value="<?php echo $datas_articleDetail[0]->ArticleCateId;?>">
+                <input type="text" name="articleCateName" value="<?php if(!empty($articleId)){ echo $articleChildName;}else{ echo $articleName;}?>">
 
                 <fieldset class="form-group mb10">
                   <script src="<?php echo base_url('js/ueditor/ueditor.config.js') ?>"></script>
