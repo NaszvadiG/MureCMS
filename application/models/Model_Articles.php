@@ -84,6 +84,33 @@ class Model_Articles extends CI_Model {
     redirect('admin/articles/'.$data['ArticleCate']);
   }
 
+  function Update($data){
+
+    var_dump($data);
+    
+    // $data_before = $this->db->get_where('sys_articles', array( 'Id'=>$data['Id'] ))->result_array()[0];
+    // if(count(array_diff($data_before, $data))!=0 || count(array_diff($data_before, $data))!=0){
+      
+    //   $this->db->update('sys_pages', $data, array( 'Id' => $data['Id'] ));
+    //   if($this->db->affected_rows()!=0){
+    //     $this->session->set_flashdata('state', '<div class="alert alert-success fade in mb10" role="alert">'.
+    //       '修改成功!'.
+    //       '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'.
+    //         '<span aria-hidden="true">&times;</span>'.
+    //       '</button>'.
+    //     '</div>'
+    //     );
+    //   }else{
+    //     $this->session->set_flashdata('state', '<div class="alert alert-danger mt10" role="alert">数据库操作失败!</div>'.$this->db->affected_rows());
+    //   }
+    //   // echo '有改';
+    // }
+    // redirect('admin/pages/'.$data['PageCate']);
+    // return false;
+
+  }
+
+
   // function AddCateRules($bool=false){
   //   // 分类 表单验证规则
   //   $this->form_validation->set_rules('pageName', '分类名称', 'required');
@@ -92,8 +119,6 @@ class Model_Articles extends CI_Model {
   //   }
   //   return $this->form_validation->run();
   // }
-
-  
 
   // function AddCate($data){
   //   $this->db->insert('sys_pages_cate', $data);
@@ -105,29 +130,7 @@ class Model_Articles extends CI_Model {
   //   redirect('admin/pages');
   // }
 
-  // function Update($data){
-
-  //   $data_before = $this->db->get_where('sys_pages', array( 'Id'=>$data['Id'] ))->result_array()[0];
-  //   if(count(array_diff($data_before, $data))!=0 || count(array_diff($data_before, $data))!=0){
-      
-  //     $this->db->update('sys_pages', $data, array( 'Id' => $data['Id'] ));
-  //     if($this->db->affected_rows()!=0){
-  //       $this->session->set_flashdata('state', '<div class="alert alert-success fade in mb10" role="alert">'.
-  //         '修改成功!'.
-  //         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'.
-  //           '<span aria-hidden="true">&times;</span>'.
-  //         '</button>'.
-  //       '</div>'
-  //       );
-  //     }else{
-  //       $this->session->set_flashdata('state', '<div class="alert alert-danger mt10" role="alert">数据库操作失败!</div>'.$this->db->affected_rows());
-  //     }
-  //     // echo '有改';
-  //   }
-  //   redirect('admin/pages/'.$data['PageCate']);
-  //   return false;
-
-  // }
+  
 
   // function UpdateCate($data){
 

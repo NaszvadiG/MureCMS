@@ -418,11 +418,6 @@ class Admin extends CI_Controller {
     $datas_articles = $this->Model_Articles->GetList($datas_articleCate['articleCate']);
     $datas_articleDetail = $this->Model_Articles->GetDetail($articleCate, $id, $articleId);
 
-    // echo $articleCate.','.$id.','.$articleId;
-    // var_dump($datas_articleCate);return false;
-    // var_dump($datas_articleDetail);return false;
-
-
     $data = array(
       'title' => $title,
       'id' => $id,
@@ -435,20 +430,51 @@ class Admin extends CI_Controller {
       'datas_articles' => $datas_articles,
       'datas_articleDetail' => $datas_articleDetail
     );
-    // var_dump($datas_articleCate); return false;
     
     if(!empty($id)){
       foreach($datas_articles as $row){
         if($id == $row->ArticleCateId){ $data['articleChildName'] = $row->ArticleCateName;break; }
       }
-    }else{
-      
     }
-
-
     $this->load->view('admin/common/header', $data);
     $this->load->view('admin/articlesEdit', $data);
     $this->load->view('admin/common/footer', $data);
+  }
+
+  public function articlesEdit($cate, $id='', $articleId=''){
+    $this->load->model('Model_Articles');
+    if ($this->Model_Articles->AddRules() == FALSE){ // 本地验证
+      if($articleId){
+        $this->articlesEditView($cate, $id, $articleId);
+      }else{
+        $this->articlesEditView($cate, $id);
+      }
+      return false;
+    }else{
+
+      echo 'success rule';
+
+      // if(empty($id)){
+      //   $data = array(
+      //     'ArticleCate'=>$cate,
+      //     'ArticleCateId'=>$_POST['articleCateId'],
+      //     'ArticleCateName'=>$_POST['articleCateName'],
+      //     'ArticleTitle'=>$_POST['title'],
+      //     'ArticleContent'=>$_POST['content'],
+      //     'Position'=>$_POST['position']
+      //   );
+      // }else{
+      //   $data = array(
+      //     'ArticleCate'=>$cate,
+      //     'ArticleCateId'=>$id,
+      //     'ArticleCateName'=>$_POST['articleCateName'],
+      //     'ArticleTitle'=>$_POST['title'],
+      //     'ArticleContent'=>$_POST['content'],
+      //     'Position'=>$_POST['position']
+      //   );
+      // }
+      // $this->Model_Articles->Add($data);
+    }
   }
 
 

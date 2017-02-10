@@ -24,9 +24,9 @@
               <h5 class="mb20">在 <b class="text-info"><?php echo $articleName; if(!empty($articleId)){ echo ' - '.$articleChildName;}?></b> 分类下修改 <b class="text-info"><?php echo $datas_articleDetail[0]->ArticleTitle; ?></b></h5>
               
               <?php if(!empty($id)){
-                echo form_open('admin/articlesAdd/'.$articleCate.'/'.$id);
+                echo form_open('admin/articlesEdit/'.$articleCate.'/'.$id.'/'.$articleId);
               }else{
-                echo form_open('admin/articlesAdd/'.$articleCate);
+                echo form_open('admin/articlesEdit/'.$articleCate.'/'.$id);
               }?>
 
                 <?php //var_dump($datas_articleDetail);?>
