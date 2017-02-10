@@ -57,9 +57,9 @@
                     <?php foreach($datas_articles as $row){ ?> 
                     <tr>
                       <td><?php echo $row->Position; ?></td>
-                      <td><a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$row->Id); ?>"><?php echo $row->ArticleTitle; ?></a></td>
+                      <td><a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$id.'/'.$row->Id); ?>"><?php echo $row->ArticleTitle; ?></a></td>
                       <td>
-                        <a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$row->Id); ?>">修改</a>&nbsp;
+                        <a href="<?php echo base_url('admin/articles/edit/'.$row->ArticleCate.'/'.$id.'/'.$row->Id); ?>">修改</a>&nbsp;
                         <a href="javascript:;" class="delete_click" data-tip="<?php echo $row->ArticleTitle;?>" data-model="articleDelete" data-url="<?php echo base_url('admin/articleDelete/'.$row->Id.'/'.$row->ArticleCate.'/'.$id);?>">删除</a>
                       </td>
                     </tr>

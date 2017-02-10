@@ -57,6 +57,12 @@ class Model_Articles extends CI_Model {
     return $query->result();
   }
 
+  function GetDetail($articleCate='', $articleId){
+    $query = $this->db->query("SELECT * FROM sys_articles WHERE ArticleCate = '".$articleCate."' AND Id = '".$articleId."' ORDER BY Position ASC;");
+    return $query->result();
+  }
+
+
   function AddRules(){
     // 表单验证规则
     $this->form_validation->set_rules('title', '标题', 'required');

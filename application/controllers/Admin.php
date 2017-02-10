@@ -404,6 +404,46 @@ class Admin extends CI_Controller {
 
 
 
+  // 修改 资讯页
+  public function articlesEditView($articleCate, $id, $articleId)
+  {
+    $title = '修改';
+    $this->Model_CheckLogin->Check();
+    $this->breadcrumb->add_crumb('首页',base_url('admin/index'));
+    $this->breadcrumb->add_crumb('内容单页管理',base_url('admin/pages'));
+    $this->breadcrumb->add_crumb($title);
+
+    $this->load->model('Model_Articles');
+    $datas_articleCate = $this->Model_Articles->GetCate($articleCate);
+    $datas_articles = $this->Model_Articles->GetList($datas_articleCate['articleCate']);
+
+    $data = array(
+      'title' => $title,
+      'id' => $id,
+      'currentNav' => 'articles',
+      'breadcrumb' => $this->breadcrumb->output(),
+      'articleCate' => $datas_articleCate['articleCate'],
+      'articleName' => $datas_articleCate['articleTitle'],
+      'datas_articleCate' => $datas_articleCate,
+      'datas_articles' => $datas_articles
+    );
+    // var_dump($datas_articleCate); return false;
+    
+    if(!empty($id)){
+      foreach($datas_articles as $row){
+        if($id == $row->ArticleCateId){ $data['articleChildName'] = $row->ArticleCateName;break; }
+      }
+    }
+
+
+    $this->load->view('admin/common/header', $data);
+    $this->load->view('admin/articlesEdit', $data);
+    $this->load->view('admin/common/footer', $data);
+  }
+
+
+
+
   /*---------------------------- 内容单页管理 Start -------------------------------*/
   // 不带参数
   public function pages($title='内容单页管理'){

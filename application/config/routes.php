@@ -64,7 +64,11 @@ $route['admin/pages/edit/(:any)/(:any)'] = 'admin/pagesEditView/$1/$2';
 $route['admin/articles/(:any)'] = 'admin/articleslist/$1';
 $route['admin/articles/add/(:any)'] = 'admin/articlesAddView/$1';
 $route['admin/articles/add/(:any)/(:any)'] = 'admin/articlesAddView/$1/$2';
+$route['admin/articles/edit/(:any)'] = 'admin/articlesEditView/$1';
+$route['admin/articles/edit/(:any)/(:any)'] = 'admin/articlesEditView/$1/$2';
+$route['admin/articles/edit/(:any)/(:any)/(:any)'] = 'admin/articlesEditView/$1/$2/$3';
 $route['admin/articles/(:any)/(:any)'] = 'admin/articleslist/$1/$2';
+
 
 //前台
 $route['pages/(:any)'] = 'FrontPages/index/$1';
