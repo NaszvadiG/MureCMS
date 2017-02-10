@@ -57,8 +57,12 @@ class Model_Articles extends CI_Model {
     return $query->result();
   }
 
-  function GetDetail($articleCate='', $articleId){
-    $query = $this->db->query("SELECT * FROM sys_articles WHERE ArticleCate = '".$articleCate."' AND Id = '".$articleId."' ORDER BY Position ASC;");
+  function GetDetail($articleCate='', $id, $articleId){
+    if(!empty($articleId)){
+      $query = $this->db->query("SELECT * FROM sys_articles WHERE ArticleCate = '".$articleCate."' AND ArticleCateId = '". $id ."' AND Id = '".$articleId."' ORDER BY Position ASC;");
+    }else{
+      $query = $this->db->query("SELECT * FROM sys_articles WHERE ArticleCate = '".$articleCate."' AND Id = '". $id ."' ORDER BY Position ASC;");
+    }
     return $query->result();
   }
 

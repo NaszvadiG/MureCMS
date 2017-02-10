@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-9">
               
-              <h5 class="mb20">在 <b class="text-info"><?php echo $articleName; if(!empty($id)){ echo ' - '.$articleChildName;}?></b> 分类下添加单页</h5>
+              <h5 class="mb20">在 <b class="text-info"><?php echo $articleName; if(!empty($articleId)){ echo ' - '.$articleChildName;}?></b> 分类下修改 <b class="text-info"><?php echo $datas_articleDetail[0]->ArticleTitle; ?></b></h5>
               
               <?php if(!empty($id)){
                 echo form_open('admin/articlesAdd/'.$articleCate.'/'.$id);
@@ -29,25 +29,22 @@
                 echo form_open('admin/articlesAdd/'.$articleCate);
               }?>
 
+                <?php //var_dump($datas_articleDetail);?>
                 <fieldset class="form-group mb10">
                   <div class="row">
-                    <div class="col-md-10"><input type="text" name="title" class="form-control" placeholder="输入内容标题" require autofocus></div>
-                    <div class="col-md-2"><input type="number" name="position" class="form-control" placeholder="0" require></div>
+                    <div class="col-md-10"><input type="text" value="<?php echo $datas_articleDetail[0]->ArticleTitle; ?>" name="title" class="form-control" placeholder="输入内容标题" require autofocus></div>
+                    <div class="col-md-2"><input type="number" value="<?php echo $datas_articleDetail[0]->Position; ?>" name="position" class="form-control" placeholder="0" require></div>
                   </div>
                 </fieldset>
-                <input type="hidden" name="articleCateId" value="<?php echo $datas_articleCate['id'];?>">
-                <input type="hidden" name="articleCateName" value="<?php echo $articleName;?>">
+                <input type="text" name="articleDetailId" value="<?php echo $datas_articleDetail[0]->Id; ?>">
+                <input type="text" name="articleCateId" value="<?php echo $datas_articleDetail[0]->ArticleCateId;?>">
 
                 <fieldset class="form-group mb10">
                   <script src="<?php echo base_url('js/ueditor/ueditor.config.js') ?>"></script>
                   <script src="<?php echo base_url('js/ueditor/ueditor.all.min.js') ?>"></script>
-                  <script id="editor" name="content" type="text/plain" style="width:100%;height:300px;"></script>
+                  <script id="editor" name="content" type="text/plain" style="width:100%;height:300px;"><?php echo $datas_articleDetail[0]->ArticleContent; ?></script>
                   <script>
                     var ue = UE.getEditor('editor');
-                    ue.ready(function(){
-                      var tempContent = UE.getEditor('editor').execCommand("getlocaldata") || '';
-                      ue.setContent(tempContent);
-                    });
                   </script>
                 </fieldset>
 

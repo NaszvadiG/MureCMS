@@ -14,7 +14,7 @@
 
 <body>
 
-  <nav class="navbar navbar-dark navbar-fixed-top bg-primary">
+  <nav class="navbar navbar-dark navbar-fixed-top bg-primary" id="header-nav">
     <a class="navbar-brand" href="<?php echo base_url('admin/index')?>">后台管理中心</a>
     <div class="pull-right">
       <ul class="nav navbar-nav">
@@ -25,7 +25,7 @@
           <a class="nav-link" href="#"><?php echo $this->session->user_info['user'] ?></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url('admin/logout')?>">注销</a>
+          <a class="nav-link" href="<?php echo base_url('admin/logout')?>">注销账号</a>
         </li>
       </ul>
     </div>

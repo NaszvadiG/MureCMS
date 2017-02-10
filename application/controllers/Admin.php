@@ -405,7 +405,7 @@ class Admin extends CI_Controller {
 
 
   // 修改 资讯页
-  public function articlesEditView($articleCate, $id, $articleId)
+  public function articlesEditView($articleCate, $id='', $articleId='')
   {
     $title = '修改';
     $this->Model_CheckLogin->Check();
@@ -416,16 +416,24 @@ class Admin extends CI_Controller {
     $this->load->model('Model_Articles');
     $datas_articleCate = $this->Model_Articles->GetCate($articleCate);
     $datas_articles = $this->Model_Articles->GetList($datas_articleCate['articleCate']);
+    $datas_articleDetail = $this->Model_Articles->GetDetail($articleCate, $id, $articleId);
+
+    // echo $articleCate.','.$id.','.$articleId;
+    // var_dump($datas_articleCate);return false;
+    // var_dump($datas_articleDetail);return false;
+
 
     $data = array(
       'title' => $title,
       'id' => $id,
+      'articleId' => $articleId,
       'currentNav' => 'articles',
       'breadcrumb' => $this->breadcrumb->output(),
       'articleCate' => $datas_articleCate['articleCate'],
       'articleName' => $datas_articleCate['articleTitle'],
       'datas_articleCate' => $datas_articleCate,
-      'datas_articles' => $datas_articles
+      'datas_articles' => $datas_articles,
+      'datas_articleDetail' => $datas_articleDetail
     );
     // var_dump($datas_articleCate); return false;
     
@@ -433,6 +441,8 @@ class Admin extends CI_Controller {
       foreach($datas_articles as $row){
         if($id == $row->ArticleCateId){ $data['articleChildName'] = $row->ArticleCateName;break; }
       }
+    }else{
+      
     }
 
 
